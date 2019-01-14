@@ -138,7 +138,7 @@ format-charging = %{F#00f769}%{F-} <label-charging>
 format-charging-background = ${colors.violet}
 format-charging-foreground = ${colors.black}
 
-label-charging = %percentage%%
+label-charging = "%percentage%% "
 label-charging-background = ${colors.violet}
 label-charging-foreground = ${colors.black}
 
@@ -166,8 +166,6 @@ ramp-capacity-1 = "  "
 ramp-capacity-2 = "  "
 ramp-capacity-3 = "  "
 ramp-capacity-4 = "  "
-
-
 
 [module/xkeyboard]
 type = internal/xkeyboard

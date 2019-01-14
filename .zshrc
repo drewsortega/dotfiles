@@ -102,3 +102,6 @@ eval `ssh-agent -s`
 
 powerline-daemon -q
 alias config='/usr/bin/git --git-dir=/home/orvyx/.cfg/ --work-tree=/home/orvyx'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs)
+POWERLEVEL9K_COLOR_SCHEME='light'
