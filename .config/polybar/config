@@ -21,10 +21,11 @@ background = ${colors.background}
 foreground = ${colors.white}
 font-0 = DejaVuSansMono Nerd Font:pixelsize=10;3
 font-1 = NotoSans Symbols2:pixelsize=10;3
+font-2 = FontAwesome5Free:stype=Solid:pixelsize=10:antialias=false;3
+font-3 = FontAwesome5Brands:stype=Solid:pixelsize=10:antialias=false;3
 
 modules-left = i3 arrowi3
-modules-right =  arrowtitle title arrowbattery battery arrowvolume volume volume-bar arrowcpu cpu arrowmemory memory arrowdate date
-
+modules-right = arrownetwork network arrowvolume volume volume-bar arrowcpu cpu arrowmemory memory arrowdate date arrowbattery battery 
 tray-position = right
 tray-background = ${colors.background}
 tray-padding = 1
@@ -38,27 +39,19 @@ content-font = 2
 content-foreground = ${colors.blue}
 content-background = ${colors.background}
 
-[module/arrowtitle]
+[module/arrownetwork]
 type = custom/text
 content = " "
 content-font = 2
-content-foreground = ${colors.black}
+content-foreground = #01ffc3
 content-background = ${colors.background}
-
-[module/arrowbattery]
-; grey to bg
-type = custom/text
-content = " "
-content-font = 2
-content-foreground = ${colors.violet}
-content-background = ${colors.black}
 
 [module/arrowvolume]
 type = custom/text
 content = " "
 content-font = 2
 content-foreground = #02bdff
-content-background = ${colors.violet}
+content-background = #01ffc3
 
 [module/arrowcpu]
 ; grey to bg
@@ -84,53 +77,96 @@ content-font = 2
 content-foreground = #024dff
 content-background = #027dff
 
+[module/arrowbattery]
+; grey to bg
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.violet}
+content-background = #024dff
+
 ;-------------------------------------------------------------------------------;
 ;								M O D U L E S				 					;
 ;-------------------------------------------------------------------------------;
+[module/network]
+type = internal/network
+interface = wlp59s0
+interval = 3.0
+udspeed-minwidth = 5
+accumulate-status = true
+unknown-as-up = true
+
+format-connected = <ramp-signal><label-connected>
+label-connected = %{A:nmcli_rofi&:}%signal%% %essid% %local_ip%%{A}
+format-connected-foreground = ${colors.black}
+format-connected-background = #01ffc3
+label-connected-foreground = ${colors.black}
+label-connected-background = #01ffc3
+
+format-disconnected = <label-disconnected>
+label-disconnected = %{A:nmcli_rofi&:}disconnected%{A}
+label-disconnected-foreground = ${colors.black}
+label-disconnected-background = #01ffc3
+format-disconnected-foreground = ${colors.black}
+format-disconnected-background = #01ffc3
+
+ramp-signal-0 = ""
+ramp-signal-1 = ""
+ramp-signal-2 = ""
+ramp-signal-3 = ""
+ramp-signal-foreground = ${colors.black}
+ramp-signal-background = #01ffc3
+
 [module/battery]
 type = internal/battery
 format-prefix = " "
 format-prefix-font = 1
-format-prefix-foreground = ${colors.white}
+format-prefix-foreground = ${colors.black}
 format-prefix-background = ${colors.violet}
-format-foreground = ${colors.white}
+format-foreground = ${colors.black}
 format-background = ${colors.violet}
-label-foreground = ${colors.white}
+label-foreground = ${colors.black}
 label-background = ${colors.violet}
 background = ${colors.violet}
-foreground = ${colors.white}
+foreground = ${colors.black}
 battery = BAT0
 adapter = AC
 poll-interval = 5 
 time-format = %H:%M
 
-format-charging-background = ${colors.violet}
-format-charging-foreground = ${colors.white}
 format-charging = %{F#00f769}%{F-} <label-charging>
+format-charging-background = ${colors.violet}
+format-charging-foreground = ${colors.black}
 
-label-charging-background = ${colors.violet}
-label-charging-foreground = ${colors.white}
 label-charging = %percentage%%
+label-charging-background = ${colors.violet}
+label-charging-foreground = ${colors.black}
 
+format-discharging = <ramp-capacity><label-discharging>
 format-discharging-background = ${colors.violet}
-format-discharging-foreground = ${colors.white}
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.black}
 
-label-discharging-background = ${colors.violet}
-label-discharging-foreground = ${colors.white}
 label-discharging = %time% (%percentage%%)
+label-discharging-background = ${colors.violet}
+label-discharging-foreground = ${colors.black}
 
-label-full-background = ${colors.violet}
-label-full-foreground = ${colors.white}
 label-full = %{F#00f769}%{F-} Charged
+label-full-background = ${colors.violet}
+label-full-foreground = ${colors.black}
 
 ramp-capacity-background = ${colors.violet}
-ramp-capacity-foreground = ${colors.white}
-ramp-capacity-0 = %{F#ea51b2}%{F-}
-ramp-capacity-1 = %{F#ea51b2}%{F-}
-ramp-capacity-2 = %{F#ebff87}%{F-}
-ramp-capacity-3 = %{F#ebff87}%{F-}
-ramp-capacity-4 = %{F#00f769}%{F-}
+ramp-capacity-foreground = ${colors.black}
+;ramp-capacity-0 = %{F#ea51b2}%{F-}
+;ramp-capacity-1 = %{F#ea51b2}%{F-}
+;ramp-capacity-2 = %{F#ebff87}%{F-}
+;ramp-capacity-3 = %{F#ebff87}%{F-}
+;ramp-capacity-4 = %{F#00f769}%{F-}
+ramp-capacity-0 = "  "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-4 = "  "
+
 
 
 [module/xkeyboard]
@@ -240,7 +276,7 @@ label-background = #024dff
 type = internal/pulseaudio
 
 ; mapping = true
-format-volume = <ramp-volume> <label-volume>
+format-volume = <ramp-volume><label-volume>
 format-volume-background = #02bdff
 format-volume-foreground = ${colors.black}
 
@@ -265,28 +301,32 @@ ramp-headphones-0 = 
 [module/volume-bar]
 type = internal/pulseaudio
 
+format-volume-prefix = " "
+format-volume-suffix = " "
 format-volume = <bar-volume>
+format-volume-background = #02bdff
+format-volume-forground = ${colors.black}
 label-padding = 2
 
 label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
 label-muted =
-label-muted-foreground = ${colors.white}
+label-muted-foreground = ${colors.black}
 
 bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.white}
-bar-volume-foreground-1 = ${colors.white}
-bar-volume-foreground-2 = ${colors.white}
-bar-volume-foreground-3 = ${colors.white}
-bar-volume-foreground-4 = ${colors.white}
-bar-volume-foreground-5 = ${colors.white}
+bar-volume-foreground-0 = ${colors.black}
+bar-volume-foreground-1 = ${colors.black}
+bar-volume-foreground-2 = ${colors.black}
+bar-volume-foreground-3 = ${colors.black}
+bar-volume-foreground-4 = ${colors.black}
+bar-volume-foreground-5 = ${colors.black}
 bar-volume-background = #02bdff
 bar-volume-background-1 = #02bdff
 bar-volume-gradient = false
 bar-volume-indicator = 
 bar-volume-indicator-font = 4
-bar-volume-indicator-foreground = ${colors.white}
+bar-volume-indicator-foreground = ${colors.black}
 bar-volume-fill = 
 bar-volume-fill-font = 4
 bar-volume-empty = 
