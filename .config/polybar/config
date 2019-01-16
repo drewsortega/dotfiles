@@ -25,9 +25,9 @@ font-2 = FontAwesome5Free:stype=Solid:pixelsize=10:antialias=false;3
 font-3 = FontAwesome5Brands:stype=Solid:pixelsize=10:antialias=false;3
 
 modules-left = i3 arrowi3
-modules-right = arrownetwork network arrowvolume volume volume-bar arrowcpu cpu arrowmemory memory arrowdate date arrowbattery battery 
+modules-right = arrowtitle title arrownetwork network arrowvolume volume volume-bar arrowcpu cpu arrowmemory memory arrowdate date arrowbattery battery 
 tray-position = right
-tray-background = ${colors.background}
+tray-background = ${colors.violet}
 tray-padding = 1
 ;-------------------------------------------------------------------------------;
 ;                    		D E C O R A T I O N S								;
@@ -39,12 +39,19 @@ content-font = 2
 content-foreground = ${colors.blue}
 content-background = ${colors.background}
 
+[module/arrowtitle]
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = #00ff01
+content-background = ${colors.background}
+
 [module/arrownetwork]
 type = custom/text
 content = " "
 content-font = 2
-content-foreground = #01ffc3
-content-background = ${colors.background}
+content-foreground = #00ffc3
+content-background = #00FF41
 
 [module/arrowvolume]
 type = custom/text
@@ -88,6 +95,12 @@ content-background = #024dff
 ;-------------------------------------------------------------------------------;
 ;								M O D U L E S				 					;
 ;-------------------------------------------------------------------------------;
+[module/title]
+type = internal/xwindow
+format = <label>
+format-background = #40ff01
+format-foreground = ${colors.black}
+
 [module/network]
 type = internal/network
 interface = wlp59s0
@@ -134,7 +147,7 @@ adapter = AC
 poll-interval = 5 
 time-format = %H:%M
 
-format-charging = %{F#00f769}%{F-} <label-charging>
+format-charging =  <label-charging>
 format-charging-background = ${colors.violet}
 format-charging-foreground = ${colors.black}
 
