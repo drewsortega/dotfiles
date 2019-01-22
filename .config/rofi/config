@@ -1,4 +1,4 @@
 rofi.combi-modi:	window,drun,ssh
 rofi.font:		Terminus 11
 rofi.modi:		combi
-rofi.theme: /usr/share/rofi/themes/Arc-Dark.rasi
+rofi.theme: /usr/share/rofi/themes/sidebar.rasi

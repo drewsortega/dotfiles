@@ -194,8 +194,12 @@ bindsym XF86AudioLowerVolume exec "pactl set-sink volume 1 -- -5%"
 bindsym XF86MonBrightnessDown exec "$HOME/.config/backlight/brightness_up.sh"
 bindsym XF86MonBrightnessUp exec "$HOME/.config/backlight/brightness_down.sh"
 
+# gaps
 gaps inner 5
 gaps outer 5
+
+# lockscreen
+bindsym $mod+Shift+p exec "i3lock -i $HOME/.wallpapers/w2XXxVU.png"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -206,8 +210,9 @@ gaps outer 5
 #disable window titlebar
 for_window [class="^.*"] border pixel 1
 
-exec $HOME/.config/feh/theme_random.sh 
 exec compton --config $HOME/.config/compton.conf -bcC
+exec_always $HOME/.config/feh/theme_random.sh 
+exec xrdb -merge ~/.Xresources
 #exec nm-applet
 #exec pasystray
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

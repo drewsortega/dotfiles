@@ -51,7 +51,7 @@ type = custom/text
 content = " "
 content-font = 2
 content-foreground = #00ffc3
-content-background = #00FF41
+content-background = #84fd01
 
 [module/arrowvolume]
 type = custom/text
@@ -98,7 +98,7 @@ content-background = #024dff
 [module/title]
 type = internal/xwindow
 format = <label>
-format-background = #40ff01
+format-background = #84fd01
 format-foreground = ${colors.black}
 
 [module/network]
